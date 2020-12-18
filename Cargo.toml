@@ -14,3 +14,8 @@ dotenv = "0.15.0"
 rustc-link-search = [ "/usr/local/opt/openssl/lib" ]
 rustc-link-lib = [ "ssl", "crypto" ]
 include = [ "/usr/local/opt/openssl/include" ]
+
+docker run -d -it -p 8096:8080  \
+    -v "$PWD/bla:/home/coder/project"  \
+     -u "$(id -u):$(id -g)" \
+    codercom/code-server:latest
