@@ -7,6 +7,10 @@ use std::env;
 fn main() {
     dotenv().ok();
 
+    for (key, value) in env::vars() {
+        println!("{}: {}", key, value);
+    }
+
     let gl = gitlab::GitLab::new(&"gitlab.com", &"GITLAB_TOKEN_XXXXXXX").unwrap();
 
     // Get GitLab's version.
@@ -14,7 +18,7 @@ fn main() {
     println!("gitlab_version: {:?}", gitlab_version);
 
 
-    // Low level methods
+    // Low level method
 
     // Get projects, owned by authenticated user and which are archived.
     let projects = gl.projects().owned().archived(true).list().unwrap();
